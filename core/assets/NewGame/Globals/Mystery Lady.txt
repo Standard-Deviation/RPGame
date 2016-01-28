@@ -1,0 +1,9 @@
+Entity
+Properties:58,25
+Movement:200
+Render:Characters,Female_Elf_6
+AI:Wander;0
+CollisionBox:20,5,30,25
+Interactable:-30,-20,120,100
+Talking:/Globals/Mystery Lady_text
+End
