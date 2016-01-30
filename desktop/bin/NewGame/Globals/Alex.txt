@@ -1,0 +1,9 @@
+Entity
+Player
+Properties:50,25
+Movement:400
+Render:Characters,Male_Elf_1
+AI:HumanControl;0
+CollisionBox:20,5,30,25
+Light:500
+End
