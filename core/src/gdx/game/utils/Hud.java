@@ -3,6 +3,7 @@ package gdx.game.utils;
 import gdx.game.entities.systems.LightSystem;
 import gdx.game.igmenus.MainMenu;
 import gdx.game.igmenus.Menu;
+import gdx.game.igmenus.TalkingMenu;
 import gdx.game.items.ItemManager;
 
 import java.util.ArrayList;
@@ -39,11 +40,12 @@ public class Hud
         stage = new Stage(viewport, batch);
 
         menus.add(new MainMenu());
+        menus.add(new TalkingMenu());
 
         debugLabel = new Label("FPS: "
                 + Gdx.graphics.getFramesPerSecond() + " Delta: "
                 + Gdx.graphics.getDeltaTime(), new Label.LabelStyle(
-                new BitmapFont(), Color.YELLOW));
+                        new BitmapFont(), Color.YELLOW));
 
         stage.addActor(debugLabel);
         for (Menu menu : menus)
@@ -67,7 +69,7 @@ public class Hud
         stage.draw();
 
         batch.begin();
-        itemManager.items.get(0).render(batch, 100, 100);
+        itemManager.get(0).render(batch, 100, 100);
         batch.end();
 
         batch.setShader(LightSystem.currentShader);

@@ -2,10 +2,12 @@ package gdx.game.igmenus;
 
 import gdx.game.screen.Play;
 
+import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.BitmapFontCache;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -23,6 +25,8 @@ public abstract class Menu extends Actor
 
     private int key;
 
+    protected boolean nextCycle;
+
     public Menu(int x, int y, int width, int height, int key)
     {
         texture = new Texture(
@@ -36,6 +40,11 @@ public abstract class Menu extends Actor
 
         setBounds(x, y, width, height);
         this.key = key;
+        nextCycle = false;
+    }
+
+    public void update(Entity e1, Entity e2)
+    {
     }
 
     @Override
@@ -51,21 +60,36 @@ public abstract class Menu extends Actor
 
     public void toggleVisible()
     {
-        if (Gdx.input.isKeyJustPressed(key))
+        if ((key != -1 && Gdx.input.isKeyJustPressed(key))
+                || (nextCycle))
         {
-            visible = !visible;
-            Play.togglePause();
+            forceToggle();
         }
+    }
+
+    public void forceToggle()
+    {
+        visible = !visible;
+        Play.togglePause();
+        nextCycle = false;
     }
 
     protected abstract void draw(Batch batch);
 
     protected abstract void handleInputs();
 
-    protected void drawString(Batch batch, String str, int x, int y)
+    protected void drawString(Batch batch, String str, int x, int y,
+            float alpha)
     {
-        font.draw(batch, str, getX() + x,
-                getY() + font.getLineHeight() + y);
+        BitmapFontCache cache = font.getCache();
+        cache.clear();
+        cache.addText(str, getX() + x, getY() + font.getLineHeight()
+                + y);
+
+        // This is the useful bit!
+        cache.setAlphas(alpha);
+
+        cache.draw(batch);
     }
 
     public void dispose()

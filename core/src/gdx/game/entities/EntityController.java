@@ -7,6 +7,7 @@ import gdx.game.entities.components.LightComponent;
 import gdx.game.entities.components.MovementComponent;
 import gdx.game.entities.components.PropertiesComponent;
 import gdx.game.entities.components.RenderComponent;
+import gdx.game.entities.components.TalkingComponent;
 import gdx.game.entities.systems.AISystem;
 import gdx.game.entities.systems.InteractSystem;
 import gdx.game.entities.systems.LightSystem;
@@ -21,7 +22,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 public class EntityController
 {
 
-    private static Engine engine;
+    private Engine engine;
     public static Entity player;
 
     public static final ComponentMapper<PropertiesComponent> pm = ComponentMapper
@@ -38,6 +39,8 @@ public class EntityController
             .getFor(LightComponent.class);
     public static final ComponentMapper<InteractableComponent> im = ComponentMapper
             .getFor(InteractableComponent.class);
+    public static final ComponentMapper<TalkingComponent> tm = ComponentMapper
+            .getFor(TalkingComponent.class);
 
     public EntityController(Batch batch)
     {

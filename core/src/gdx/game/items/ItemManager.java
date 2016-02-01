@@ -9,17 +9,18 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class ItemManager
+public class ItemManager extends ArrayList<Item>
 {
 
+    private static final long serialVersionUID = 1L;
     private static final String imagePath = "Textures/HF1_Remaster/IconSet.png";
     private static final String textPath = "NewGame/items.txt";
     private static final int size = 24;
     private TextureRegion[][] sprites;
-    public ArrayList<Item> items = new ArrayList<Item>();
 
     public ItemManager()
     {
+        super();
         loadItems();
     }
 
@@ -46,7 +47,7 @@ public class ItemManager
         int x = Integer.parseInt(parts[3]);
         int y = Integer.parseInt(parts[4]);
         Sprite sprite = new Sprite(sprites[y][x]);
-        items.add(new Item(name, price, weight, sprite));
+        add(new Item(name, price, weight, sprite));
         System.out.println(name);
     }
 

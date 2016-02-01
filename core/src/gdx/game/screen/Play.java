@@ -20,7 +20,7 @@ public class Play implements Screen
 
     private static SpriteBatch batch;
 
-    private Hud hud;
+    public static Hud hud;
 
     public static float elapsedTime = 0;
 
@@ -31,7 +31,6 @@ public class Play implements Screen
     @Override
     public void render(float delta)
     {
-        handleInput();
         if (!paused)
         {
             elapsedTime += delta;
@@ -45,6 +44,7 @@ public class Play implements Screen
             batch.end();
         }
         hud.render();
+        handleInput();
     }
 
     private void handleInput()

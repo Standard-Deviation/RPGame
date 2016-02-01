@@ -9,6 +9,8 @@ import gdx.game.screen.Play;
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.Family;
 import com.badlogic.ashley.systems.IteratingSystem;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Rectangle;
 
 public class InteractSystem extends IteratingSystem
@@ -29,20 +31,30 @@ public class InteractSystem extends IteratingSystem
         playerRectangle = new Rectangle(playerPosition.x + 30,
                 playerPosition.y + 20, 10, 10);
         target = null;
+
         super.update(deltaTime);
+
         MovementComponent movement = target != null
                 && EntityController.mm.has(target) ? EntityController.mm
-                        .get(target) : null;
-        if (movement != null)
-        {
-            movement.stop();
-        }
+                .get(target) : null;
+                        if (movement != null)
+                        {
+                            movement.stop();
+                        }
+
+                        if (target != null
+                                && Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+                        {
+                            EntityController.im.get(target).interact(target);
+                        }
+
     }
 
     @Override
     protected void processEntity(Entity entity, float deltaTime)
     {
-        PropertiesComponent position = EntityController.pm.get(entity);
+        PropertiesComponent position = EntityController.pm
+                .get(entity);
         InteractableComponent interact = EntityController.im
                 .get(entity);
 

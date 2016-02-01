@@ -40,14 +40,10 @@ public class TalkingComponent extends MyComponent
         String[] textGoto1 = parts[2].split(",");
 
         ArrayList<String> textArray = new ArrayList<String>();
+        ArrayList<Integer> textGotoArray = new ArrayList<Integer>();
         for (int j = 0; j < text1.length; j++)
         {
             textArray.add(text1[j]);
-        }
-
-        ArrayList<Integer> textGotoArray = new ArrayList<Integer>();
-        for (int j = 0; j < textGoto1.length; j++)
-        {
             textGotoArray.add(Integer.parseInt(textGoto1[j]));
         }
 
@@ -62,6 +58,11 @@ public class TalkingComponent extends MyComponent
     {
         // TODO Auto-generated method stub
         return null;
+    }
+
+    public int getNext(int question, int selected)
+    {
+        return textGoto.get(question).get(selected);
     }
 
 }

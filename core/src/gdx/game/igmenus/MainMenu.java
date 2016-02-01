@@ -9,7 +9,7 @@ public class MainMenu extends Menu
 {
 
     private String[] options =
-    { "Quit", "Load", "Save" };
+        { "Quit", "Load", "Save" };
     private int selected = options.length - 1;
 
     public MainMenu()
@@ -22,7 +22,7 @@ public class MainMenu extends Menu
     {
         for (int i = 0; i < options.length; i++)
         {
-            drawString(batch, options[i], 75, 100 + i * 50);
+            drawString(batch, options[i], 75, 100 + i * 50, 1);
         }
         batch.draw(selector, getX() + 40, getY() + 100 + selected
                 * 50);
