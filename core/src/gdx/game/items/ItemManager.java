@@ -2,14 +2,14 @@ package gdx.game.items;
 
 import gdx.game.utils.ReasourceManager;
 
-import java.util.ArrayList;
+import java.util.Hashtable;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class ItemManager extends ArrayList<Item>
+public class ItemManager extends Hashtable<String, Item>
 {
 
     private static final long serialVersionUID = 1L;
@@ -47,7 +47,7 @@ public class ItemManager extends ArrayList<Item>
         int x = Integer.parseInt(parts[3]);
         int y = Integer.parseInt(parts[4]);
         Sprite sprite = new Sprite(sprites[y][x]);
-        add(new Item(name, price, weight, sprite));
+        put(name, new Item(name, price, weight, sprite));
         System.out.println(name);
     }
 
