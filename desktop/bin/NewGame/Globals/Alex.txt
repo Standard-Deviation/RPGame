@@ -6,4 +6,5 @@ Render:Characters,Male_Elf_1
 AI:HumanControl;0
 CollisionBox:20,5,30,25
 Light:500
+Inventory:100,Bread,Bread,Bread,Bread,Bread,Cloth Chest,Chain Chest,Plate Chest,Leather Chest,Chain Shoes,Cloth Hat,Plate Hat
 End

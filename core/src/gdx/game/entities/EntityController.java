@@ -3,6 +3,7 @@ package gdx.game.entities;
 import gdx.game.entities.components.AIComponent;
 import gdx.game.entities.components.CollisionBoxComponent;
 import gdx.game.entities.components.InteractableComponent;
+import gdx.game.entities.components.InventoryComponent;
 import gdx.game.entities.components.LightComponent;
 import gdx.game.entities.components.MovementComponent;
 import gdx.game.entities.components.PropertiesComponent;
@@ -41,6 +42,8 @@ public class EntityController
             .getFor(InteractableComponent.class);
     public static final ComponentMapper<TalkingComponent> tm = ComponentMapper
             .getFor(TalkingComponent.class);
+    public static final ComponentMapper<InventoryComponent> invm = ComponentMapper
+            .getFor(InventoryComponent.class);
 
     public EntityController(Batch batch)
     {

@@ -2,6 +2,7 @@ package gdx.game.igmenus;
 
 import gdx.game.entities.EntityController;
 import gdx.game.entities.components.TalkingComponent;
+import gdx.game.utils.ReasourceManager;
 
 import com.badlogic.ashley.core.Entity;
 import com.badlogic.gdx.Gdx;
@@ -22,7 +23,7 @@ public class TalkingMenu extends Menu
 
     public TalkingMenu()
     {
-        super(30, 20, 660, 150, Input.Keys.T);
+        super(30, 20, 660, 150, -1);
     }
 
     @Override
@@ -43,22 +44,22 @@ public class TalkingMenu extends Menu
     {
         batch.draw(char1Render, 50, 170);
         batch.draw(char2Render, 570, 170);
-        this.drawString(batch, char2Talk.questions.get(question),
-                100, 80, 1);
-        this.drawString(batch,
+        ReasourceManager.drawString(batch,
+                char2Talk.questions.get(question), 100, 80, 1, 2);
+        ReasourceManager.drawString(batch,
                 char2Talk.text.get(question).get(selected), 500, 50,
-                1);
+                1, 2);
         if (selected != 0)
         {
-            this.drawString(batch,
+            ReasourceManager.drawString(batch,
                     char2Talk.text.get(question).get(selected - 1),
-                    500, 90, .5f);
+                    500, 90, .5f, 2);
         }
         if (selected != length)
         {
-            this.drawString(batch,
+            ReasourceManager.drawString(batch,
                     char2Talk.text.get(question).get(selected + 1),
-                    500, 10, .5f);
+                    500, 10, .5f, 2);
         }
     }
 

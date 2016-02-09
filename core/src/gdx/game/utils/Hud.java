@@ -1,10 +1,10 @@
 package gdx.game.utils;
 
 import gdx.game.entities.systems.LightSystem;
+import gdx.game.igmenus.InventoryMenu;
 import gdx.game.igmenus.MainMenu;
 import gdx.game.igmenus.Menu;
 import gdx.game.igmenus.TalkingMenu;
-import gdx.game.items.ItemManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,9 +26,7 @@ public class Hud
     private Viewport viewport;
 
     Label debugLabel;
-    public List<Menu> menus = new ArrayList<Menu>();
-
-    private static ItemManager itemManager;
+    public static List<Menu> menus = new ArrayList<Menu>();
 
     public Hud(SpriteBatch batch)
     {
@@ -41,19 +39,18 @@ public class Hud
 
         menus.add(new MainMenu());
         menus.add(new TalkingMenu());
+        menus.add(new InventoryMenu());
 
         debugLabel = new Label("FPS: "
                 + Gdx.graphics.getFramesPerSecond() + " Delta: "
                 + Gdx.graphics.getDeltaTime(), new Label.LabelStyle(
-                        new BitmapFont(), Color.YELLOW));
+                new BitmapFont(), Color.YELLOW));
 
         stage.addActor(debugLabel);
         for (Menu menu : menus)
         {
             stage.addActor(menu);
         }
-
-        itemManager = new ItemManager();
     }
 
     public void render()
@@ -67,10 +64,6 @@ public class Hud
                 + Gdx.graphics.getDeltaTime());
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
-
-        batch.begin();
-        itemManager.get(0).render(batch, 100, 100);
-        batch.end();
 
         batch.setShader(LightSystem.currentShader);
     }
@@ -86,9 +79,29 @@ public class Hud
 
     public void menuToggles()
     {
+        boolean visible = false;
         for (Menu menu : menus)
         {
-            menu.toggleVisible();
+            if (menu.visible)
+            {
+                visible = true;
+            }
         }
+        for (Menu menu : menus)
+        {
+            if (visible && menu.visible)
+            {
+                menu.toggleVisible();
+            }
+            else if (!visible)
+            {
+                menu.toggleVisible();
+            }
+        }
+    }
+
+    public void resize(int width, int height)
+    {
+        viewport.update(width, height);
     }
 }

@@ -72,10 +72,10 @@ public class Play implements Screen
         camera.setToOrtho(false, w, h);
 
         batch = new SpriteBatch();
-        hud = new Hud(batch);
 
         tiles = new TileMap(
                 "NewGame/Tutorial_Island/Tutorial_Island.txt", batch);
+        hud = new Hud(batch);
 
         updatePauseImage();
     }
@@ -88,6 +88,7 @@ public class Play implements Screen
         camera.update();
 
         tiles.resize(width, height);
+        hud.resize(width, height);
     }
 
     @Override

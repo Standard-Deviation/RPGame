@@ -1,1 +1,14 @@
 Bread,10,5,0,43
+Cloth Chest,10,5,0,32
+Cloth Shoes,10,5,1,32
+Cloth Hat,10,5,2,32
+Cloth Cape,10,5,3,32
+Leather Chest,10,5,4,32
+Leather Shoes,10,5,5,32
+Leather Hat,10,5,6,32
+Chain Chest,10,5,7,32
+Chain Shoes,10,5,8,32
+Chain Hat,10,5,9,32
+Plate Chest,10,5,10,32
+Plate Shoes,10,5,11,32
+Plate Hat,10,5,12,32

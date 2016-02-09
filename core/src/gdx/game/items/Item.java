@@ -1,5 +1,7 @@
 package gdx.game.items;
 
+import gdx.game.utils.ReasourceManager;
+
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 
@@ -35,9 +37,19 @@ public class Item
         return price;
     }
 
-    public void render(Batch batch, int x, int y)
+    public void render(Batch batch, float f, float g)
     {
-        sprite.setPosition(x, y);
+        sprite.setPosition(f, g);
         sprite.draw(batch);
+    }
+
+    public void draw(Batch batch, float x, float y)
+    {
+        render(batch, x, y);
+        ReasourceManager.drawString(batch, name, x + 30, y, 1, 1);
+        ReasourceManager.drawString(batch, price + "", x + 130, y, 1,
+                1);
+        ReasourceManager.drawString(batch, weight + "", x + 180, y,
+                1, 1);
     }
 }

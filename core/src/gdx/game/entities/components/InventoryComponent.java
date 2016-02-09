@@ -2,43 +2,32 @@ package gdx.game.entities.components;
 
 import gdx.game.entities.MyComponent;
 import gdx.game.items.Item;
-
-import java.util.ArrayList;
-import java.util.Hashtable;
-
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.files.FileHandle;
+import gdx.game.utils.ItemManager;
+import gdx.game.utils.ScrollList;
 
 public class InventoryComponent extends MyComponent
 {
 
-    public Hashtable<String, Item> inventory;
-    public ArrayList<Integer> stack;
+    public ScrollList<Item> inventory;
     public int gold;
-
-    private String path;
 
     @Override
     public void loadData(String data)
     {
-        inventory = new Hashtable<String, Item>();
-        stack = new ArrayList<Integer>();
+        inventory = new ScrollList<Item>(10);
 
-        this.path = data;
-        FileHandle file = Gdx.files.internal("NewGame/" + path
-                + ".txt");
-
-        String[] lines = file.readString().split("\\r?\\n");
-        gold = Integer.parseInt(lines[0]);
-        for (int i = 1; i < lines.length; i++)
+        String[] info = data.split(",");
+        gold = Integer.parseInt(info[0]);
+        for (int i = 1; i < info.length; i++)
         {
-            addItem(lines[i]);
+            addItem(info[i]);
         }
     }
 
     public void addItem(String item)
     {
-
+        Item i = ItemManager.items.get(item);
+        inventory.add(i);
     }
 
     @Override

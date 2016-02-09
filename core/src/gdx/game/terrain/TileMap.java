@@ -145,16 +145,16 @@ public class TileMap
     private void setType(int x, int y)
     {
         boolean[] surroundingTiles =
-        {
+            {
                 tileMap[x - 1][y + 1] == tileMap[x][y],
-                        tileMap[x][y + 1] == tileMap[x][y],//
-                        tileMap[x + 1][y + 1] == tileMap[x][y],//
-                        tileMap[x - 1][y] == tileMap[x][y],
-                        tileMap[x][y] == tileMap[x][y],
-                        tileMap[x + 1][y] == tileMap[x][y],//
-                tileMap[x - 1][y - 1] == tileMap[x][y],
-                        tileMap[x][y - 1] == tileMap[x][y],
-                        tileMap[x + 1][y - 1] == tileMap[x][y] };//
+                tileMap[x][y + 1] == tileMap[x][y],//
+                tileMap[x + 1][y + 1] == tileMap[x][y],//
+                tileMap[x - 1][y] == tileMap[x][y],
+                tileMap[x][y] == tileMap[x][y],
+                tileMap[x + 1][y] == tileMap[x][y],//
+                        tileMap[x - 1][y - 1] == tileMap[x][y],
+                tileMap[x][y - 1] == tileMap[x][y],
+                tileMap[x + 1][y - 1] == tileMap[x][y] };//
 
         int bitA = (!surroundingTiles[3] ? 0 : 1)
                 + (!surroundingTiles[0] ? 0 : 2)
@@ -170,7 +170,7 @@ public class TileMap
                 + (!surroundingTiles[7] ? 0 : 4);
 
         int[] infoNew =
-        { evaluateBit(bitA), evaluateBit(bitB), evaluateBit(bitC),
+            { evaluateBit(bitA), evaluateBit(bitB), evaluateBit(bitC),
                 evaluateBit(bitD) };
         terrainInfo[x][y] = infoNew;
     }
